@@ -1,4 +1,4 @@
-package com.landingpage.landingpage_backend
+package com.landingpage.landingpage
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

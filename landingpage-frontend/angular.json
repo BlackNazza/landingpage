@@ -4,7 +4,10 @@
   "newProjectRoot": "projects",
   "schematics": {
     "@schematics/angular:component": {
-      "style": "scss"
+      "style": "scss",
+      "flat": false
+    },
+    "@schematics/angular:service": {
     }
   },
   "projects": {

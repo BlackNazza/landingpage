@@ -1,6 +1,15 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+import { provideHttpClient } from '@angular/common/http';
 import { App } from './app/app';
+import { appConfig } from './app/app.config';
 
-bootstrapApplication(App, appConfig)
+const mergedAppConfig = {
+  ...appConfig,
+  providers: [
+    ...(appConfig.providers ?? []),
+    provideHttpClient(),
+  ],
+};
+
+bootstrapApplication(App, mergedAppConfig)
   .catch((err) => console.error(err));

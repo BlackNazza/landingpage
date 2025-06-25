@@ -1,0 +1,33 @@
+<router-outlet>
+  <div class="login-card">
+    <div class="login-header">
+      <h2>Login</h2>
+      <p>Bitte melde dich an</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Benutzername</label>
+        <input id="username" type="text" formControlName="username" placeholder="Benutzername eingeben" />
+        <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error">
+          Benutzername ist erforderlich.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Passwort</label>
+        <input id="password" type="password" formControlName="password" placeholder="Passwort eingeben" />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+          Passwort ist erforderlich.
+        </div>
+      </div>
+
+      <button class="btn-primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <div *ngIf="loginError" class="error" style="margin-top:1rem;">
+      {{ loginError }}
+    </div>
+  </div>
+
+</router-outlet>

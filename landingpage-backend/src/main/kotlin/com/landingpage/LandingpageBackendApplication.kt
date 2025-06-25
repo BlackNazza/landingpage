@@ -1,4 +1,4 @@
-package com.landingpage.landingpage_backend
+package com.landingpage
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
