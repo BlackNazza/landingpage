@@ -1,33 +1,36 @@
-<router-outlet>
+<div class="section login">
   <div class="login-card">
-    <div class="login-header">
-      <h2>Login</h2>
-      <p>Bitte melde dich an</p>
-    </div>
+    <h2 class="login-title">🔐 SIGN IN</h2>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="username">Benutzername</label>
-        <input id="username" type="text" formControlName="username" placeholder="Benutzername eingeben" />
-        <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error">
-          Benutzername ist erforderlich.
-        </div>
+      <input
+        type="text"
+        formControlName="username"
+        placeholder="Benutzername"
+        class="login-input"
+      />
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="Passwort"
+        class="login-input"
+      />
+
+      <div class="login-links">
+        <a href="#">Passwort vergessen?</a>
+        <a (click)="signup()">Registrieren</a>
       </div>
 
-      <div class="form-group">
-        <label for="password">Passwort</label>
-        <input id="password" type="password" formControlName="password" placeholder="Passwort eingeben" />
-        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
-          Passwort ist erforderlich.
-        </div>
-      </div>
+      <button type="submit" class="login-button">Login</button>
 
-      <button class="btn-primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+      <button type="button" class="guest-button" (click)="continueAsGuest()">
+        Als Gast fortfahren
+      </button>
     </form>
+    <div id="googleSignInDiv"></div>
 
-    <div *ngIf="loginError" class="error" style="margin-top:1rem;">
+    <div *ngIf="loginError" class="login-error">
       {{ loginError }}
     </div>
   </div>
-
-</router-outlet>
+</div>

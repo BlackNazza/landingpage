@@ -1,1 +1,72 @@
-<p>home works!</p>
+<header class="main-header">
+  <div class="header-content">
+    <div class="logo">👨‍💻 Max Mustermann</div>
+    <div class="profile-area">
+      <span class="username">max.mustermann</span>
+      <img src="/assets/img/profilbild.jpg" alt="Profil" class="profile-img" />
+    </div>
+  </div>
+</header>
+<!--NAVBAR COMPONENT ERSTELLEN-->
+<div class="section intro">
+  <h1>👋 Max Mustermann</h1>
+  <p>Webentwickler mit Fokus auf Angular, TypeScript & Backend-Schnittstellen</p>
+</div>
+
+<div class="section cv">
+  <h2>📄 Bewerbung & Unterlagen</h2>
+
+  <!-- Lebenslauf -->
+  <div class="doc-card">
+    <h3>🧾 Lebenslauf</h3>
+    <ul>
+      <li><strong>Name:</strong> {{ lebenslauf.name }}</li>
+      <li><strong>Beruf:</strong> {{ lebenslauf.beruf }}</li>
+      <li><strong>Erfahrung:</strong> {{ lebenslauf.erfahrung }}</li>
+      <li><strong>Skills:</strong> {{ lebenslauf.skills.join(', ') }}</li>
+    </ul>
+  </div>
+
+  <!-- Zeugnis -->
+  <div class="doc-card">
+    <h3>🎓 Hochschulzeugnis</h3>
+    <ul>
+      <li><strong>Studiengang:</strong> {{ zeugnis.studiengang }}</li>
+      <li><strong>Abschlussnote:</strong> {{ zeugnis.note }}</li>
+      <li><strong>Schwerpunkte:</strong> {{ zeugnis.schwerpunkte.join(', ') }}</li>
+    </ul>
+  </div>
+
+  <!-- Motivation & Coding -->
+  <div class="doc-card">
+    <h3>💬 Motivation & Coding-Fortschritte</h3>
+    <p>{{ motivation.text }}</p>
+    <h4>Letzte Coding-Projekte:</h4>
+    <ul>
+      <li *ngFor="let fortschritt of motivation.coding">
+        {{ fortschritt }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="section projects">
+  <h2>💼 Projekte</h2>
+  <div class="project-grid">
+    <div class="project-card" *ngFor="let project of projects">
+      <h3>{{ project.name }}</h3>
+      <p>{{ project.desc }}</p>
+      <a [href]="project.link" target="_blank">Projekt ansehen</a>
+    </div>
+  </div>
+</div>
+
+<div class="section contact">
+  <h2>📬 Kontakt</h2>
+  <p>📧 max.mustermann&#64;email.de</p>
+  <p>🔗 <a href="https://www.linkedin.com/in/maxmustermann" target="_blank">LinkedIn Profil</a></p>
+</div>
+
+<footer class="footer">
+  © {{ currentYear }} Max Mustermann – Impressum auf Anfrage
+</footer>
