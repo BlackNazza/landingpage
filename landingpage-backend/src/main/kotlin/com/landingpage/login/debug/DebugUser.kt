@@ -19,12 +19,13 @@ class DataInitializer(
             val user = User(
                 username = "admin",
                 email = "admin@admin.com",
-                password = passwordEncoder.encode("admin")
+                password = passwordEncoder.encode("admin"),
+                profileImageUrl = "penner"
             )
             userRepository.save(user)
             println("Testuser angelegt")
         } else {
-            println("Testuser existiert bereits")
+            println("admin existiert bereits")
         }
     }
 }

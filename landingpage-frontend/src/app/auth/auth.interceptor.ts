@@ -13,11 +13,11 @@ import { AuthService } from './auth.service';
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    const token = this.authService.getToken(); // Token aus Service holen
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log('[Interceptor] Request URL:', req.url);
+
+    const token = this.authService.getToken();
+    console.log('[Interceptor] JWT:', token);
 
     if (token) {
       const cloned = req.clone({
@@ -25,6 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
       });
       return next.handle(cloned);
     }
+
     return next.handle(req);
   }
 }

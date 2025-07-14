@@ -1,0 +1,5 @@
+<script>
+  // GitHub Pages Redirect Workaround for Angular Routing
+  const redirect = location.pathname.split('/').slice(2).join('/');
+  location.replace('/landingpage/#/' + redirect);
+</script>

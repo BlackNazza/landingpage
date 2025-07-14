@@ -22,5 +22,9 @@ class User(
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_roles", joinColumns = [JoinColumn(name = "user_id")])
     @Column(name = "role")
-    val roles: Set<String> = setOf("ROLE_USER")
+    val roles: Set<String> = setOf("ROLE_USER"),
+
+    @Column(name = "profile_image_url", length = 500, nullable = true)
+    var profileImageUrl: String? = null
 )
+

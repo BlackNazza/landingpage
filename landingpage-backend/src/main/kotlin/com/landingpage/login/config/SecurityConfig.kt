@@ -1,12 +1,12 @@
 package com.landingpage.login.config
 
-
 import com.landingpage.login.service.UserDetailsServiceImpl
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
+import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
@@ -14,9 +14,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+import org.springframework.web.filter.CorsFilter
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
-
 
 @Configuration
 class SecurityConfig(
@@ -26,20 +28,24 @@ class SecurityConfig(
 
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
+        // CORS wird jetzt über die CorsCustomizer direkt konfiguriert
         http
-            .csrf { it.disable() }
+            .csrf { csrf -> csrf.disable() }
             .authorizeHttpRequests { auth ->
                 auth
                     .requestMatchers("/api/auth/**").permitAll()
                     .anyRequest().authenticated()
             }
-            .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
+            .sessionManagement { session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authenticationProvider(authenticationProvider())
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter::class.java)
+            // CORS Konfiguration über .cors(Customizer.withDefaults()) aktivieren
+            .cors(Customizer.withDefaults())
 
         return http.build()
     }
 
+    // WebMvcConfigurer CORS (reicht oft aus, kann bleiben)
     @Bean
     fun corsConfigurer(): WebMvcConfigurer {
         return object : WebMvcConfigurer {
@@ -47,10 +53,12 @@ class SecurityConfig(
                 registry.addMapping("/api/**")
                     .allowedOrigins("http://localhost:4200")
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                    .allowedHeaders("*")
                     .allowCredentials(true)
             }
         }
     }
+
     @Bean
     fun authenticationProvider(): AuthenticationProvider {
         return DaoAuthenticationProvider().apply {

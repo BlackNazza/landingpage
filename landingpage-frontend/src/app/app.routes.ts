@@ -7,9 +7,9 @@ import {Signup} from './auth/signup/signup';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
-  { path: '', component: AuthService },
   { path: 'home', component: Home },
   { path: 'signup', component: Signup},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
 ];
 

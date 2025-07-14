@@ -6,7 +6,7 @@ import {Login} from './auth/login/login';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Login], // HttpClientModule hier importieren
+  imports: [RouterOutlet], // HttpClientModule hier importieren
   templateUrl: './app.html',
   styleUrls: ['./app.scss']  // Korrigiert: styleUrls (nicht styleUrl)
 })
