@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Nav} from '../nav/nav';
 import {Footer} from '../footer/footer';
+import {User, UserService} from '../../user/user.service';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +14,26 @@ import {Footer} from '../footer/footer';
   styleUrls: ['./home.scss']
 })
 export class Home {
+  protected user$: Observable<User | null>;
+  user: User | null = null;
+
+  constructor(public userService: UserService, public router: Router) {
+    this.user$ = this.userService.user$;
+    this.userService.loadUser();
+  }
+
   currentYear = new Date().getFullYear();
 
+  //TODO: Change with Database informations, connected to the profile...
   lebenslauf = {
-    name: 'Max Mustermann',
-    beruf: 'Webentwickler',
-    erfahrung: '3+ Jahre in Frontend & Backend',
-    skills: ['Angular', 'TypeScript', 'Node.js', 'REST', 'SCSS']
+    name: 'Gabriel Nikolai Doege',
+    beruf: 'Fachinformatiker - IT-Anwendungsentwickler',
+    erfahrung: '+3 Jahre in Frontend & Backend (Ausbildung)',
+    Berufserfahrung: '< 3',
+    skills: ['Angular', 'TypeScript', 'Node.js', 'REST', 'Kotlin', 'Spring Boot', 'Docker', 'Postgresql']
   };
 
-  zeugnis = {
+  arbeitszeugnis = {
     studiengang: 'Informatik B.Sc.',
     note: '1,7',
     schwerpunkte: ['Webentwicklung', 'Datenbanken', 'Softwarearchitektur']

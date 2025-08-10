@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {UserService} from '../../user/user.service';
 
 declare const google: any;
 
@@ -15,6 +16,7 @@ declare const google: any;
   styleUrls: ['./login.scss']
 })
 export class Login implements OnInit {
+  serverDown = false;
   loginForm: FormGroup;
   loginError: string | null = null;
 
@@ -22,7 +24,8 @@ export class Login implements OnInit {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private  userService: UserService,
   ) {
     if(this.auth.getToken() != null){
       this.router.navigate(['/home']);
@@ -31,6 +34,8 @@ export class Login implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+
+    this.serverDown = userService.getServerStatus();
   }
 
   ngOnInit(): void {

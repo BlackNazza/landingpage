@@ -32,5 +32,8 @@
     <div *ngIf="loginError" class="login-error">
       {{ loginError }}
     </div>
+    <div *ngIf="serverDown" class="login-error">
+      ️ Fehler: Backend-Server ist nicht erreichbar!
+    </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AsyncPipe, NgIf} from '@angular/common';
 import { UserService, User } from '../../user/user.service';
-import { Observable } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {Router} from '@angular/router';
 
 @Component({
@@ -36,6 +36,12 @@ export class Nav implements OnInit {
   }
 
   login() {
+    this.router.navigate(['/login']);
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.userService.unloadUser();
     this.router.navigate(['/login']);
   }
 }

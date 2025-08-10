@@ -3,9 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/LandingPage.iml" filepath="$PROJECT_DIR$/.idea/LandingPage.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/landingpage-backend.iml" filepath="$PROJECT_DIR$/.idea/modules/landingpage-backend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/landingpage-backend.main.iml" filepath="$PROJECT_DIR$/.idea/modules/landingpage-backend.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/landingpage-backend.test.iml" filepath="$PROJECT_DIR$/.idea/modules/landingpage-backend.test.iml" />
     </modules>
   </component>
 </project>

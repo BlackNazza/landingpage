@@ -5,14 +5,20 @@
         (user$ | async)?.username || 'Gast'
       }}
     </div>
-
+<!--
     <nav class="menu">
-      <a (click)="home()">Home</a>
-      <a href="#">Über uns</a>
-      <a href="#">Kontakt</a>
-      <a (click)="login()">Login</a>
+      <a href="#">Dummy</a>
+      <a href="#">Dummy</a>
+      <a href="#">Dummy</a>
+      <a href="#">Dummy</a>
     </nav>
+-->
+    <nav>
+      <div *ngIf="this.userService.getServerStatus()" class="error-banner">
+        ⚠️ Fehler: Backend-Server ist nicht erreichbar!
+      </div>
 
+    </nav>
     <div class="profile-area" tabindex="0" (blur)="closeDropdown()">
       <button
         class="profile-btn"
@@ -32,7 +38,7 @@
 
       <ul class="dropdown-menu" *ngIf="dropdownOpen">
         <li><a href="#">Einstellungen</a></li>
-        <li><a href="#">Abmelden</a></li>
+        <li><a (click)="logout()">{{ (user$ | async) ? 'Logout' : 'Login' }}</a></li>
       </ul>
     </div>
   </div>

@@ -26,5 +26,7 @@ class User(
 
     @Column(name = "profile_image_url", length = 500, nullable = true)
     var profileImageUrl: String? = null
+
+    //TODO: Extend to all values in home.html
 )
 

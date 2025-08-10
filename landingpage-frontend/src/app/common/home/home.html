@@ -1,8 +1,9 @@
 <app-nav></app-nav>
-<div class="section intro">
-  <h1>👋 Max Mustermann</h1>
-  <p>Webentwickler mit Fokus auf Angular, TypeScript & Backend-Schnittstellen</p>
-</div>
+
+<header class="section intro">
+  <h1>Gabriel Doege</h1>
+  <p>Angehender Fachinformatiker für Anwendungsentwicklung</p>
+</header>
 
 <div class="section cv">
   <h2>📄 Bewerbung & Unterlagen</h2>
@@ -11,51 +12,77 @@
   <div class="doc-card">
     <h3>🧾 Lebenslauf</h3>
     <ul>
-      <li><strong>Name:</strong> {{ lebenslauf.name }}</li>
-      <li><strong>Beruf:</strong> {{ lebenslauf.beruf }}</li>
-      <li><strong>Erfahrung:</strong> {{ lebenslauf.erfahrung }}</li>
-      <li><strong>Skills:</strong> {{ lebenslauf.skills.join(', ') }}</li>
+      <li><strong>Name:</strong> Gabriel Doege</li>
+      <li><strong>Beruf:</strong> Fachinformatiker für Anwendungsentwicklung (abgeschlossen 2025)</li>
+      <li><strong>Erfahrung:</strong> Ausbildung bei conLeos GmbH, Praktikum BITMARCK Technik GmbH</li>
+      <li><strong>Skills:</strong> Java, C#, Kotlin, TypeScript, Angular, GWT, PostgreSQL, Oracle</li>
     </ul>
+    <a href="Lebenslauf_Doege_Gabriel.pdf" download="Lebenslauf_Doege_Gabriel.pdf" class="download-link">
+      Lebenslauf herunterladen (PDF)
+    </a>
   </div>
 
-  <!-- Zeugnis -->
+  <!-- Zeugnis / Ausbildung -->
   <div class="doc-card">
-    <h3>🎓 Hochschulzeugnis</h3>
+    <h3>🎓 Ausbildung</h3>
     <ul>
-      <li><strong>Studiengang:</strong> {{ zeugnis.studiengang }}</li>
-      <li><strong>Abschlussnote:</strong> {{ zeugnis.note }}</li>
-      <li><strong>Schwerpunkte:</strong> {{ zeugnis.schwerpunkte.join(', ') }}</li>
+      <li><strong>2022 – 2025:</strong> Fachinformatiker AE, conLeos GmbH (Note: 2,7)</li>
+      <li><strong>2021 – 2022:</strong> Erweiterter Sekundarabschluss I, Otto-Bennemann-Schule</li>
+      <li><strong>2019 – 2021:</strong> Realschule John-F.-Kennedy-Platz</li>
+      <li><strong>2015 – 2019:</strong> Gesamtschule Wilhelmsburg</li>
+      <li><strong>2011 – 2015:</strong> Grundschule Diesterwegstraße</li>
     </ul>
+    <a href="Arbeitszeugnis_Doege_Gabriel.pdf" download="Arbeitszeugnis_Doege_Gabriel.pdf" class="download-link">
+      Arbeitszeugnis (PDF)
+    </a>
+    <p></p>
+    <a href="Lebenslauf_Doege_Gabriel.pdf" download="Lebenslauf_Doege_Gabriel.pdf" class="download-link">
+      Zeugnis (PDF)
+    </a>
   </div>
 
-  <!-- Motivation & Coding -->
+  <!-- Motivation -->
   <div class="doc-card">
-    <h3>💬 Motivation & Coding-Fortschritte</h3>
-    <p>{{ motivation.text }}</p>
+    <h3>💬 Motivation</h3>
+    <p>Ich bin ein motivierter Berufseinsteiger, der seine Ausbildung erfolgreich abgeschlossen hat und nun nach einer Möglichkeit sucht, meine erlernten Fähigkeiten in realen Projekten einzusetzen. Besonders interessiert bin ich an moderner Webentwicklung, Datenbankanbindungen und kreativen Softwarelösungen.</p>
     <h4>Letzte Coding-Projekte:</h4>
     <ul>
-      <li *ngFor="let fortschritt of motivation.coding">
-        {{ fortschritt }}
-      </li>
+      <li>Angular-Anwendung mit REST-API-Anbindung</li>
+      <li>Kotlin-Backend-Service für interne Datenverarbeitung</li>
+      <li>PostgreSQL-Datenbankmodellierung für Kundenverwaltung</li>
     </ul>
+    <a href="Lebenslauf_Doege_Gabriel.pdf" download="Lebenslauf_Doege_Gabriel.pdf" class="download-link">
+      Motivationsschreiben (PDF)
+    </a>
   </div>
 </div>
 
+<!-- besser mit "For" Lösen -->
 <div class="section projects">
   <h2>💼 Projekte</h2>
   <div class="project-grid">
-    <div class="project-card" *ngFor="let project of projects">
-      <h3>{{ project.name }}</h3>
-      <p>{{ project.desc }}</p>
-      <a [href]="project.link" target="_blank">Projekt ansehen</a>
+    <div class="project-card">
+      <h3>Projekt: Angular Konfigurationstool</h3>
+      <p>Webanwendung zur Konfiguration von Automobile mit Angular.</p>
+    </div>
+    <div class="project-card">
+      <h3>Projekt: GWT Konfigurationstool</h3>
+      <p>Intranet Webanwendung zur Konfiguration von Gabelstaplern mit GWT.</p>
     </div>
   </div>
 </div>
 
 <div class="section contact">
   <h2>📬 Kontakt</h2>
-  <p>📧 max.mustermann&#64;email.de</p>
-  <p>🔗 <a href="https://www.linkedin.com/in/maxmustermann" target="_blank">LinkedIn Profil</a></p>
+  <p>📧 <a href="mailto:Gabriel.Nikolai.Doege@gmail.com">Gabriel.Nikolai.Doege&#64;gmail.com</a></p>
+  <p>📱 <a href="tel:01605400757">01605400757</a></p>
+  <p>🔗 <a href="https://www.linkedin.com/in/gabriel-doege-3184a7370/" target="_blank" rel="noopener noreferrer">LinkedIn Profil</a></p>
+  <p>🔗 <a href="https://www.stepstone.de" target="_blank" rel="noopener noreferrer">StepStone:</a> Suchen Sie nach "Gabriel Doege"</p>
+  <p>🏠 <a href="https://www.google.com/maps/search/?api=1&query=Vogelh%C3%BCttendeich+32%2C+21107+Hamburg" target="_blank" rel="noopener noreferrer">
+    Vogelhüttendeich 32, 21107 Hamburg
+  </a></p>
+
 </div>
+
 
 <app-footer></app-footer>
