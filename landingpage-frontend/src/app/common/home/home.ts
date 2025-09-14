@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {Nav} from '../nav/nav';
-import {Footer} from '../footer/footer';
-import {User, UserService} from '../../user/user.service';
-import {Router} from '@angular/router';
-import {Observable} from 'rxjs';
+import { Nav } from '../nav/nav';
+import { Footer } from '../footer/footer';
+import { User, UserService } from '../../user/user.service';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,40 +17,45 @@ export class Home {
   protected user$: Observable<User | null>;
   user: User | null = null;
 
+  currentYear = new Date().getFullYear();
+
+  // Dokumente in gewünschter Reihenfolge
+  cards = [
+    { id: 'motivation', title: '💬 Motivationsschreiben', content: 'Ich liebe es, Probleme elegant zu lösen und nutzerfreundliche UIs zu gestalten. Mein Fokus liegt auf nachhaltigem Code und sauberer Architektur.' },
+    { id: 'lebenslauf', title: '🧾 Lebenslauf', content: 'Fachinformatiker AE, conLeos GmbH …', skills: ['Angular', 'TypeScript', 'Node.js', 'REST', 'Kotlin', 'Spring Boot', 'Docker', 'PostgreSQL'] },
+    { id: 'arbeitszeugnis', title: '📄 Arbeitszeugnis', content: 'Note: 2,7', grade: 2.7 },
+    { id: 'ihk', title: '🎓 IHK-Zeugnis', content: 'Note: 1,7', grade: 1.7 },
+    { id: 'berufsschule', title: '🏫 Berufsschulzeugnis', content: 'Note: 2,3', grade: 2.3 }
+  ];
+
+  visible: Set<string> = new Set();
+
   constructor(public userService: UserService, public router: Router) {
     this.user$ = this.userService.user$;
     this.userService.loadUser();
   }
 
-  currentYear = new Date().getFullYear();
+  @HostListener('window:scroll', [])
+  onScroll() {
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
 
-  //TODO: Change with Database informations, connected to the profile...
-  lebenslauf = {
-    name: 'Gabriel Nikolai Doege',
-    beruf: 'Fachinformatiker - IT-Anwendungsentwickler',
-    erfahrung: '+3 Jahre in Frontend & Backend (Ausbildung)',
-    Berufserfahrung: '< 3',
-    skills: ['Angular', 'TypeScript', 'Node.js', 'REST', 'Kotlin', 'Spring Boot', 'Docker', 'Postgresql']
-  };
+    this.cards.forEach(card => {
+      const el = document.getElementById(card.id);
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const elTop = rect.top + scrollTop;
+      const elBottom = elTop + rect.height;
 
-  arbeitszeugnis = {
-    studiengang: 'Informatik B.Sc.',
-    note: '1,7',
-    schwerpunkte: ['Webentwicklung', 'Datenbanken', 'Softwarearchitektur']
-  };
+      // Wenn das Element im Viewport ist → sichtbar
+      if (elBottom > scrollTop + 50 && elTop < scrollTop + windowHeight - 50) {
+        this.visible.add(card.id);
+      } else {
+        // Außerhalb → wieder ausblenden
+        this.visible.delete(card.id);
+      }
+    });
+  }
 
-  motivation = {
-    text: 'Ich liebe es, Probleme elegant zu lösen und nutzerfreundliche UIs zu gestalten. Mein Fokus liegt auf nachhaltigem Code und sauberer Architektur.',
-    coding: [
-      'Dark-Mode Switch in Angular implementiert',
-      'E2E-Tests mit Cypress geschrieben',
-      'RxJS in komplexen Formularen angewendet'
-    ]
-  };
-
-  projects = [
-    { name: 'Portfolio Website', desc: 'Persönliche Seite mit Angular', link: 'https://example.com' },
-    { name: 'KI-Bildgenerator', desc: 'OpenAI API + Angular', link: 'https://example.com' },
-    { name: 'ToDo App', desc: 'Mit LocalStorage & JWT-Auth', link: '#' }
-  ];
+  protected readonly Math = Math;
 }

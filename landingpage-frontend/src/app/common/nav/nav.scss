@@ -1,5 +1,10 @@
+$bg: #0b1120;
+$light: #1e293b;
+$accent: #8b5cf6;
+$text: #e2e8f0;
+$muted: #94a3b8;
 .main-header {
-  background-color: #fff;
+  background-color: $bg;
   box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
   padding: 0.5rem 1rem;
 
